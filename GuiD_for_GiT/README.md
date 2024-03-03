@@ -6,7 +6,8 @@ Hey there, fellow code wrangler! So, you've decided to dive into the magical wor
 ## Chapter 1: Getting Started
 
 Alright, listen up! First things first, you gotta summon Git into your coding lair. How, you ask? Easy peasy! Just initialize Git in your project folder like a wizard casting a spell.
-```git init
+```
+git init
 ```
 
 
