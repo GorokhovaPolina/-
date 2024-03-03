@@ -13,7 +13,8 @@ git init
 
 ### Un-Gitifying a Folder
 Imagine you accidentally turned the wrong folder into a Git repository. Oopsie daisy! No worries, you can "un-gitify" it. Just follow these steps:
-```$ cd <repository folder>  # Navigate to the folder
+```
+$ cd <repository folder>  # Navigate to the folder
 $ rm -rf .git  # Delete the hidden .git folder
 ```
 Now, let's break down what's happening here:
@@ -40,19 +41,22 @@ Picture this: You've got a brand new Git repository, but it's as empty as a libr
 So, let's say you've got two files in mind: todo.txt, where you'll jot down your to-dos, and readme.txt, where you'll spill the beans about your project.
 Now, why text files, you ask? Well, because in the magical land of Git, any code is just a bunch of text. Whether you're slinging Python or scribbling YAML, it's all just ones and zeroes to Git!
 So, fire up your command line and create those files in your project folder (let's call it first-project). Then, let's check the status:
-```$ touch todo.txt
+```
+$ touch todo.txt
 $ touch readme.txt # Files created: todo.txt and readme.txt
 $ git status # Checking the status
 ```
 Git's gonna tell you that these files are untracked, which basically means it hasn't started keeping an eye on them yet. Poor little fellas, lost in the vast coding wilderness!
 Now, to the rescue comes git add. This nifty command prepares files for saving (or "committing" in Git lingo). And guess what? There's more than one way to skin a cat – or add files, in our case!
 You can add files one by one:
-```$ git add todo.txt
+```
+$ git add todo.txt
 $ git add readme.txt
 $ git status
 ```
 Or, if you're feeling lazy efficient, you can add the whole darn folder:
-```$ git add . # Adds the whole current folder
+```
+$ git add . # Adds the whole current folder
 $ git status
 ```
 And voila! The files marked in green are now officially tracked by Git and ready to be saved. But wait, we're not done yet!
@@ -72,7 +76,8 @@ A commit is like a time capsule for your code changes. It ensures that your chan
 So, how do you make this mystical commit happen? Easy peasy! Just use the git commit command, along with the -m flag (short for "message") to attach a meaningful message to your commit.
 Now, why do we need a message, you ask? Well, it's like leaving notes in the margins of a book – it helps others (and your future self) understand what the heck you were up to when you made those changes.
 Let's dive right in and make our first commit. Navigate to your project folder (first-project) and unleash the power of Git with the following command:
-```$ git commit -m 'My first commit!'
+```
+$ git commit -m 'My first commit!'
 ```
 Hit Enter, and boom! Your current files are now immortalized in Git's history with the message "My first commit!" attached. It's like taking a snapshot of your project at this exact moment in time.
 
@@ -153,10 +158,12 @@ Only you can decrypt data using the private key, but anyone possessing the publi
 
 ### Checking for the Existence of SSH Keys
 Before generating SSH keys, make sure you don't already have them. By default, the directory containing SSH keys is in the user's home directory. Navigate there.
-```$ cd ~ # navigate to the home directory
+```
+$ cd ~ # navigate to the home directory
 ```
 Usually, SSH keys are located in the .ssh/ directory. You can check for the existence of this directory and its files using the following command.
-```$ ls -la .ssh/ # list any created keys
+```
+$ ls -la .ssh/ # list any created keys
 ```
 If the folder is empty or doesn't exist, you're good to go. If there are files with similar names, SSH keys have already been created:
 - id_dsa.pub;
@@ -167,23 +174,28 @@ If you haven't created these files yourself, delete them.
 
 ### Instructions for Generating SSH Keys
 To generate an SSH pair, you can use the ssh-keygen program. Open the terminal and enter the following command.
-```$ ssh-keygen -t ed25519 -C "your_email@example.com" 
+```
+$ ssh-keygen -t ed25519 -C "your_email@example.com" 
 ```
 Use the email associated with your GitHub account. If you encounter an error message, your system likely doesn't support the ed25519 encryption algorithm. No worries, use another algorithm.
-```$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com" 
+```
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com" 
 ```
 After entering this command, you'll see the following message.
-```> Generating public/private rsa key pair. # a public and private key pair has been generated
+```
+> Generating public/private rsa key pair. # a public and private key pair has been generated
 ```
 Specify where to store the keys. The default is the user's home directory. Press Enter to accept the default location.
-```macOS
+```
+macOS
 > Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter] 
 Windows
 > Enter a file in which to save the key (C:\Users\<username>\.ssh\):[Press enter] 
 ```
 Now, a pair of keys will be created in the specified directory.
 The program will prompt you for a passphrase to access the SSH key. You can leave it empty. Press Enter, then Enter again to confirm.
-```> Enter passphrase (empty for no passphrase): [Type a passphrase]
+```
+> Enter passphrase (empty for no passphrase): [Type a passphrase]
 > Enter same passphrase again: [Type passphrase again] 
 ```
 
@@ -192,7 +204,8 @@ Oddly enough, a passphrase is like a "key to the key." Imagine your SSH key is i
 Many Git users don't use a passphrase to protect their SSH keys. If there's no passphrase, you don't need to enter it each time you interact with a remote repository.
 On the flip side, using a passphrase enhances key security. If you do use one, your key will be securely protected if your computer is accessed without authorization.
 All set! Now, let's check if the keys were indeed generated. Run this command.
-```ls -a ~/.ssh 
+```
+ls -a ~/.ssh 
 ```
 You should see two files — one with a .pub extension and one without. The .pub file is public, meaning you can share it with websites or colleagues. The file without the .pub extension is private. Never share it with anyone! 🗝️
 
@@ -208,13 +221,15 @@ After running the ssh-keygen command from the previous lesson, two files will be
 
 ### Copying the Public Key to GitHub
 *MacOS*
-```# Copy the contents of the key to the clipboard:
+```
+# Copy the contents of the key to the clipboard:
 $ pbcopy < ~/.ssh/id_rsa.pub  # For ed25519 use the next command:
 $ pbcopy < ~/.ssh/id_ed25519.pub 
 ```
 Here, the pbcopy command is used to copy the data stream to the clipboard. The command pbcopy < ~/.ssh/id_rsa.pub means "Copy the entire contents of the ~/.ssh/id_rsa.pub file to the clipboard." Alternatively, you can print the file to the screen using cat ~/.ssh/id_rsa.pub and manually copy it.
 *Windows* 
-``` # Copy the contents of the key to the clipboard:
+```
+# Copy the contents of the key to the clipboard:
 $ clip < ~/.ssh/id_rsa.pub
 # For ed25519:
 $ clip < ~/.ssh/id_ed25519.pub 
@@ -232,7 +247,8 @@ If clip doesn't work, display the contents of the file using cat ~/.ssh/id_rsa.p
 
 ### Verifying the Key
 Check the correctness of the key using the following command.
-```$ ssh -T git@github.com 
+```
+$ ssh -T git@github.com 
 ```
 If this is your first time using Git to share a project on GitHub, you'll see a similar warning.
 ```The authenticity of host 'github.com (140.82.121.4)' can't be established.
@@ -242,7 +258,8 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 This warning indicates that you've never connected to the GitHub server before. Therefore, Git can't guarantee that the server is who it claims to be.
 To confirm authenticity, the server generates and publishes SHA256 keys. You can check the GitHub keys at this link. If the key in the warning matches what you see on the site, the server is valid. Type "yes" to continue. You'll see a welcome message on the screen.
-```Hi %YOUR_ACCOUNT%! You've successfully authenticated, but GitHub does not provide shell access.
+```
+Hi %YOUR_ACCOUNT%! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 Congratulations! Your SSH key is now linked to your GitHub account, opening up a world of collaboration possibilities.
 
@@ -254,17 +271,20 @@ You now have a local repository named first-project, stored on your computer, an
 ### Linking the Remote Repository to the Local One with git remote add
 1. Go to the page of your remote repository, choose the SSH option, and copy the URL. A button on the right will allow you to do this instantly.
 2. Open the console, navigate to the directory of your local repository, and enter the git remote add command.
-```$ cd ~/dev/first-project
+```
+$ cd ~/dev/first-project
 $ git remote add origin git@github.com:%YOUR_ACCOUNT%/first-project.git
 ```
 The command needs two parameters: the name of the remote repository and its URL. Use the word origin as the name, and paste the URL you copied from the remote repository page.
 
 ### Verify that the Repositories are Linked with 'git remote -v'
 Great! You've linked the local repository with the remote one. Now, let's make sure everything is working with the following command.
-```$ git remote -v
+```
+$ git remote -v
 ```
 In the output, you should see two lines similar to those shown below:
-```origin    git@github.com:%YOUR_ACCOUNT%/%PROJECT-NAME%.git (fetch)
+```
+origin    git@github.com:%YOUR_ACCOUNT%/%PROJECT-NAME%.git (fetch)
 origin    git@github.com:%YOUR_ACCOUNT%/%PROJECT-NAME%.git (push)
 ```
 The -v flag is the short form of the --verbose flag, which displays more information in the output.
@@ -280,7 +300,8 @@ Imagine branches as funky parallel universes where your code parties. Each commi
 ### Wham, Bam, Thank You git push!
 So, you've done the commit cha-cha - staged your files with git add and committed them with git commit -m. Now, it's time to hit the turbo boost and fling those code nuggets to GitHub's cosmic cloud using the almighty git push command.
 The first time around, toss in the -u flag along with origin (your remote repo's nickname) and main or master (your current branch's name) like so:
-```$ git push -u origin main # If this gives you grief, try 'master' instead of 'main'.
+```
+$ git push -u origin main # If this gives you grief, try 'master' instead of 'main'.
 ```
 It's like telling your code, "Fly, my pretties, and show the world what you're made of!"
 
@@ -291,7 +312,8 @@ GitHub's playground is where the real fun begins. Click that "commit" button and
 1. Open your project on GitHub and summon a file called task.txt using touch.
 2. Sprinkle some magic into task.txt - add some jokes, unleash your creativity, you do you.
 3. Commit your changes and blast them off to the GitHub mothership using git push.
-```$ git push
+```
+$ git push
 ```
 4. Use the GitHub interface to bask in the glory of your latest commit. Click on the commit message and let the applause roll in.
 
